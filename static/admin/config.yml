@@ -1,0 +1,54 @@
+backend:
+  name: git-gateway
+  branch: master
+  repo: stephenajulu/techwit3
+
+publish_mode: editorial_workflow
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "blog"
+    label: "Posts"
+    folder: "../content/blog/"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: {label: Name, name: name, widget: string, default: "tag"}
+      - label: "Category"
+        name: "category"
+        widget: "list"
+        field: {label: Name, name: name, widget: string, default: "Tech"}
+      - {label: "Excerpt", name: "excerpt", widget: "string"}
+      - {label: "Publish Date", name: "created", widget: "date"}
+      - {label: "Article Image Image", name: "image", widget: "image"}
+      - {label: "Image Caption", name: "image_caption", widget: "string"}
+      - {label: "Author", name: "author", widget: "relation", collection: "author", searchFields: ["id"], valueField: "id", displayFields: ["id"]}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "author"
+    label: "Authors"
+    folder: "../content/author/"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "ID", name: "id", widget: "string"}
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Bio", name: "bio", widget: "text"}
+      - {label: "Facebook", name: "facebook", widget: "string"}
+      - {label: "Twitter", name: "twitter", widget: "string"}
+      - {label: "LinkedIn", name: "linkedin", widget: "string"}
+      - {label: "Potrait", name: "image", widget: "image"}
+      - {label: "Cover Image", name: "cover", widget: "image"}
+  - name: "pages"
+    label: "Pages"
+    folder: "../content/pages/"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
